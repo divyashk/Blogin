@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG')
+DEBUG = (os.environ.get('DEBUG') == 'True')        #because os.environ returns string and DEBUG takes bool value
 
 ALLOWED_HOSTS = ["blogin-now.herokuapp.com",'127.0.0.1']
 
