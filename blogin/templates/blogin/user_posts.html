@@ -1,0 +1,73 @@
+{%  extends "blogin/layout.html" %}
+
+{% block main_pic %}
+    <header class="masthead" style="background-image: url('/static/bootstrap/img/image.jpg')">
+        <div class="overlay">
+
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+              <div class="site-heading">
+                <h1 style="color:white">BLogin</h1>
+                <span class="subheading">
+                    A Django powered blogging site.
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+    </header>
+
+{% endblock main_pic %}
+
+{% block post %}
+    <h1 class="mb-3" align="center">Posts by {{ view.kwargs.username }} ({{ page_obj.paginator.count }}) </h1>
+    {% for post in posts %}
+        <div class="post-paginated">
+            <div class="content-section post-preview">
+            <div>
+                <img class="rounded-circle article-img" style="width:32px;height:32px;float:left;" src="{{ post.author.profile.image.url }}">
+                <p style="margin:0px ;height:32px;max-width:100%;float:left;overflow:auto;" class="post-meta">Posted by <b>{{ post.author }}</b> on <b>{{ post.date_posted|date:'F d, Y' }}</b></p>
+                <br>
+            </div>
+            <a href="{% url 'post-detail' post.id %}">
+                <h2 class="post-title" align="center">
+                  {{ post.title }}
+                </h2>
+
+                <h5 class="post-subtitle">
+                  {{ post.content }}
+                </h5>
+            </a>
+        </div>
+        </div>
+        <hr>
+    {% endfor %}
+    <div align="center">
+        {% if is_paginated %}
+        {% if page_obj.has_previous %}
+            <a class="btn btn-outline-info mb-2" href="?page=1">First</a>
+            <a class="btn btn-outline-info mb-2" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+        {% endif %}
+
+        {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num %}
+                <a class="btn btn-info mb-2" href="?page={{ num }}">{{ num }}</a>
+            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                <a class='btn btn-outline-info mb-2' href="?page={{ num }}">{{ num }}</a>
+            {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}" class="btn btn-outline-info mb-2" >Next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}" class="btn btn-outline-info mb-2" >Last</a>
+        {% endif %}
+
+        {% endif %}
+    </div>
+{% endblock post %}
+
+{% block masthead %}
+
+{% endblock %}

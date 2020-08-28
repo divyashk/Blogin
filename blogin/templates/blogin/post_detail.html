@@ -1,0 +1,55 @@
+{%  extends "blogin/layout.html" %}
+
+{% block main_pic %}
+
+    <header class="masthead" style="background-image: url('/static/bootstrap/img/image.jpg')">
+        <div class="overlay">
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+              <div class="site-heading">
+                <h1 style="color:white">BLogin</h1>
+                <span class="subheading">
+                    A Django powered blogging site.
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+    </header>
+
+
+{% endblock main_pic %}
+
+{% block post %}
+    {% if object.author == user %}
+        <div align="center">
+            <a class = 'btn btn-outline-secondary' href="{% url 'post-update' object.id %}">
+            Update
+            </a>
+            <a class = 'btn btn-outline-danger' href="{% url 'post-delete' object.id %}">
+                Delete
+            </a>
+        </div>
+    {% endif %}
+    <br>
+    <br>
+    <h2 class="post-title" align="center">
+      {{ post.title }}
+    </h2>
+    <div class="content-section">
+        <h6 class="post-subtitle">
+          {{ post.content }}
+        </h6>
+    </div>
+    </a>
+
+    <div>
+        <img class="rounded-circle article-img" style="width:32px;height:32px;float:left;" src="{{ post.author.profile.image.url }}">
+        <p style="margin:0px ;height:32px;max-width:100%;float:left;overflow:auto;" class="post-meta">Posted by <b>{{ post.author }}</b> on {{ post.date_posted|date:'F d, Y' }}</p>
+
+    </div>
+    <br><br> <br>
+
+{% endblock post %}
