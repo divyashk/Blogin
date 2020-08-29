@@ -19,11 +19,12 @@ ul {
 }
 
 .content-section {
-  background: #ffffff;
+  background: #3b4348;;
   padding: 10px 20px;
   border: 1px solid #dddddd;
   border-radius: 3px;
   margin-bottom: 20px;
+  color: #fff;;
 }
 
 .article-title {
