@@ -2,6 +2,7 @@
 {% load crispy_forms_tags %}
 
 {% block main_pic %}
+
     <header class="masthead" style="background-image: url('/static/bootstrap/img/extra.jpg')">
         <div class="overlay"></div>
         <div class="container">
@@ -20,21 +21,26 @@
 {% endblock %}
 
 
-{% block post %}
-    <div class = "content-section">
-        <form method="POST">
-            {% csrf_token %}
-            <fieldset class="form-group">
-                <legend class="border-bottom mg-3"> Blog now! </legend>
-                {{ form|crispy }}
-            </fieldset>
-            <div class="form-group"> 
-                <button class="btn btn-outline-info" type="submit">
-                    Post
-                </button>
+{% block create-post %}
+
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-md-9" align="center">
+                <div class = "content-section my-card">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <fieldset class="form-group">
+                            <legend class="border-bottom mg-3 good-text"> Blog now! </legend>
+                            {{ form|crispy }}
+                        </fieldset>
+                        <div class="form-group">
+                            <button class="btn btn-outline-info" type="submit">
+                                Post
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
-        </form>
-
-
+        </div>
     </div>
 {% endblock %}

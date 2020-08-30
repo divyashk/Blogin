@@ -19,28 +19,37 @@
     </header>
 {% endblock main_pic %}
 
-{% block post %}
-   <div class="content-section">
-        <div class="media">
-            <img src="{{ user.profile.image.url }}" alt="" class="rounded-circle account-img">
-            <div class="media-body">
-                <h2 class="account-heading">{{ user.username }}</h2>
-                <p class="text-secondary">{{ user.email }}</p>
+{% block profile %}
+    <div class="container-fluid ">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="content-section my-card">
+                    <div class="media">
+                        <img src="{{ user.profile.image.url }}" alt="" class="rounded-circle account-img">
+                        <div class="media-body">
+                            <h2 class="account-heading">{{ user.username }}</h2>
+                            <p class="text-secondary">{{ user.email }}</p>
+                        </div>
+                    </div>
+                   <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <fieldset class="form-group">
+                            <legend class="border-bottom mb-3">Profile Info</legend>
+                            {{ u_form|crispy }}
+                            {{ p_form|crispy }}
+                        </fieldset>
+                        <div class="form-group" align="center">
+                            <button class="btn btn-outline-info"  type="submit">
+                                Update
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
+
             </div>
+
         </div>
-       <form method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            <fieldset class="form-group">
-                <legend class="border-bottom mb-3">Profile Info</legend>
-                {{ u_form|crispy }}
-                {{ p_form|crispy }}
-            </fieldset>
-            <div class="form-group">
-                <button class="btn btn-outline-info" type="submit">
-                    Update
-                </button>
-            </div>
-        </form>
 
     </div>
-{% endblock post %}
+{% endblock profile %}

@@ -21,23 +21,30 @@
 
 
 {% block post %}
-    <div class = "content-section">
-        <form method="POST">
-            {% csrf_token %}
-            <fieldset class="form-group">
-                <legend class="border-bottom mg-3"> <h2>Delete Post</h2> </legend>
-                <h5>Are you sure you want to delete the post "{{ object.title }}"</h5>
-            </fieldset>
-            <div class="form-group">
-                <button class="btn btn-outline-danger" type="submit">
-                    Yes, delete it.
-                </button>
-               <a class="btn btn-outline-secondary" href="{% url 'post-detail' object.id %}" type="submit">
-                    Cancel
-                </a>
-            </div>
-        </form>
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-md-7">
+                <div class = "content-section">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <fieldset class="form-group">
+                            <legend class="border-bottom mg-3"> <h2>Delete Post</h2> </legend>
+                            <h5>Are you sure you want to delete the post "{{ object.title }}"</h5>
+                        </fieldset>
+                        <div class="form-group">
+                            <button class="btn btn-outline-danger" type="submit">
+                                Yes, delete it.
+                            </button>
+                           <a class="btn btn-outline-secondary" href="{% url 'post-detail' object.id %}" type="submit">
+                                Cancel
+                            </a>
+                        </div>
+                    </form>
+                </div>
 
+            </div>
+
+        </div>
 
     </div>
 {% endblock %}
