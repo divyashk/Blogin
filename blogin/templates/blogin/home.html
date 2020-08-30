@@ -23,35 +23,36 @@
 
 {% block post %}
     {% for post in posts %}
+        <a href="{% url 'post-detail' post.id %}">
+             <div class="blog-container">
+                <div class="blog-header">
+                    <h1>
+                        {{ post.title }}
 
-        <div class="row justify-content-md-center">
-                 <div class="col-md-8">
-                    <div class="post-paginated">
-                        <div class="content-section post-preview">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-1">
-                                        <img class="rounded-circle article-img" style="width:32px;height:32px;float:left;" src="{{ post.author.profile.image.url }}">
-                                    </div>
-                                    <div class="col-auto">
-                                        <p  class="post-meta">Posted by <b><a href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a></b> on <b>{{ post.date_posted|date:'F d, Y' }}</b></p>
-                                    </div>
-                                </div>
-                            </div>
+                        <hr>
+                    </h1>
 
-                            <a href="{% url 'post-detail' post.id %}">
-                            <h3 class="post-title" align="center">
-                              {{ post.title }}
-                            </h3>
-
-                            <h5 class="post-subtitle">
-                              {{ post.content }}
-                            </h5>
-                            </a>
-                        </div>
+                    <div class="author">
+                        <img src="{{ post.author.profile.image.url }}" alt="">
+                        <p><a href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a></p>
                     </div>
                 </div>
-        </div>
+                <div class="blog-content">
+                    <div class="blog-text">
+                        {{ post.content }}
+                    </div>
+                    <div class="blog-info">
+                        <p>
+                            {{ post.date_posted|date:'F d, Y' }}
+                        </p>
+                        <button>
+                            <i class="fas fa-heart"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </a>
+
         <hr>
     {% endfor %}
     <div align="center">

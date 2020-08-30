@@ -21,28 +21,37 @@
 {% endblock %}
 
 
-{% block post %}
-    <div class = "content-section">
-        <form method="POST">
-            {% csrf_token %}
-            <fieldset class="form-group">
-                <legend class="border-bottom mg-3">Login</legend>
-                {{ form|crispy }}
-            </fieldset>
-            <div class="form-group">
-                <button class="btn btn-outline-info" type="submit">
-                    Login
-                </button>
-                <small class="text-muted ml-2">
-                    <a href="{% url 'password_reset' %}">Forgot Password?</a>
-                </small>
-            </div>
-        </form>
-        <div class="border-top pt-3">
-            <small class="text-muted">
-               Need an account? <a href="{% url 'register' %}" class="ml-2">Sign UP</a>
-            </small>
-        </div>
+{% block login %}
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-md-6" align="center">
+                <div class = "my-card content-section login-form">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <fieldset class="form-group">
+                            <legend class="border-bottom mg-3 good-text
+">Login</legend>
+                            {{ form|crispy }}
+                        </fieldset>
+                        <div class="form-group">
+                            <button class="btn btn-outline-info" type="submit">
+                                Login
+                            </button>
+                            <small class="text-muted ml-2">
+                                <a href="{% url 'password_reset' %}">Forgot Password?</a>
+                            </small>
+                        </div>
+                    </form>
+                    <div class="border-top pt-3">
+                        <small class="text-muted">
+                           Need an account? <a href="{% url 'register' %}" class="ml-2">Sign UP</a>
+                        </small>
+                    </div>
 
+    </div>
+
+            </div>
+
+        </div>
     </div>
 {% endblock %}

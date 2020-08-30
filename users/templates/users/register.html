@@ -20,25 +20,30 @@
 {% endblock %}
 
 
-{% block post %}
-    <div class = "content-section">
-        <form method="POST">
-            {% csrf_token %}
-            <fieldset class="form-group">
-                <legend class="border-bottom mg-3"> Join Now </legend>
-                {{ form|crispy }}
-            </fieldset>
-            <div class="form-group">
-                <button class="btn btn-outline-info" type="submit">
-                    SignUP
-                </button>
+{% block register %}
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-md-6 register-form">
+                <div class = "my-card content-section" align="center">
+                    <form method="POST" class="">
+                        {% csrf_token %}
+                        <fieldset class="form-group">
+                            <legend class="border-bottom mg-3 good-text"> Join Now </legend>
+                            {{ form|crispy }}
+                        </fieldset>
+                        <div class="form-group">
+                            <button class="btn btn-outline-info" type="submit">
+                                SignUP
+                            </button>
+                        </div>
+                    </form>
+                    <div class="border-top pt-3">
+                        <small class="text-muted">
+                            Already Have an account? <a href="{% url 'login' %}" class="ml-2">Sign IN</a>
+                        </small>
+                    </div>
+                </div>
             </div>
-        </form>
-        <div class="border-top pt-3">
-            <small class="text-muted">
-                Already Have an account? <a href="#" class="ml-2">Sign IN</a>
-            </small>
         </div>
-
     </div>
 {% endblock %}

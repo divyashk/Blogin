@@ -22,25 +22,34 @@
 {% endblock main_pic %}
 
 {% block post %}
-    <h1 class="mb-3" align="center">Posts by {{ view.kwargs.username }} ({{ page_obj.paginator.count }}) </h1>
+    <h1 class="mb-3 post-by" align="center">Posts by {{ view.kwargs.username }} ({{ page_obj.paginator.count }}) </h1>
     {% for post in posts %}
-        <div class="post-paginated">
-            <div class="content-section post-preview">
-            <div>
-                <img class="rounded-circle article-img" style="width:32px;height:32px;float:left;" src="{{ post.author.profile.image.url }}">
-                <p style="margin:0px ;height:32px;max-width:100%;float:left;overflow:auto;" class="post-meta">Posted by <b>{{ post.author }}</b> on <b>{{ post.date_posted|date:'F d, Y' }}</b></p>
-                <br>
-            </div>
-            <a href="{% url 'post-detail' post.id %}">
-                <h2 class="post-title" align="center">
-                  {{ post.title }}
-                </h2>
+        <div class="blog-container">
+                <div class="blog-header">
+                    <h1>
+                        {{ post.title }}
 
-                <h5 class="post-subtitle">
-                  {{ post.content }}
-                </h5>
-            </a>
-        </div>
+                        <hr>
+                    </h1>
+
+                    <div class="author">
+                        <img src="{{ post.author.profile.image.url }}" alt="">
+                        <p>{{ post.author }}</p>
+                    </div>
+                </div>
+                <div class="blog-content">
+                    <div class="blog-text">
+                        {{ post.content }}
+                    </div>
+                    <div class="blog-info">
+                        <p>
+                            {{ post.date_posted|date:'F d, Y' }}
+                        </p>
+                        <button>
+                            <i class="fas fa-heart"></i>
+                        </button>
+                    </div>
+                </div>
         </div>
         <hr>
     {% endfor %}

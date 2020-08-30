@@ -35,21 +35,33 @@
     {% endif %}
     <br>
     <br>
-    <h2 class="post-title" align="center">
-      {{ post.title }}
-    </h2>
-    <div class="content-section">
-        <h6 class="post-subtitle">
-          {{ post.content }}
-        </h6>
-    </div>
-    </a>
+    <div class="blog-container">
+                <div class="blog-header">
+                    <h1>
+                        {{ post.title }}
 
-    <div>
-        <img class="rounded-circle article-img" style="width:32px;height:32px;float:left;" src="{{ post.author.profile.image.url }}">
-        <p style="margin:0px ;height:32px;max-width:100%;float:left;overflow:auto;" class="post-meta">Posted by <b>{{ post.author }}</b> on {{ post.date_posted|date:'F d, Y' }}</p>
+                        <hr>
+                    </h1>
 
-    </div>
-    <br><br> <br>
+                    <div class="author">
+                        <img src="{{ post.author.profile.image.url }}" alt="">
+                        <p><a href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a></p>
+                    </div>
+                </div>
+                <div class="blog-content">
+                    <div class="blog-text">
+                        {{ post.content }}
+                    </div>
+                    <div class="blog-info">
+                        <p>
+                            {{ post.date_posted|date:'F d, Y' }}
+                        </p>
+                        <button>
+                            <i class="fas fa-heart"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
 
 {% endblock post %}
